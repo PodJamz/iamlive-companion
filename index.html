@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>8GI · Living Deck · Gary Cardone · 2026-05-12</title>
+<style>
+  :root {
+    --soil-900: #1a1410;
+    --soil-800: #251c14;
+    --soil-700: #322517;
+    --bark-600: #3f2f1c;
+    --bark-500: #4f3b25;
+    --linen-100: #f4ede0;
+    --linen-200: #e8dcc4;
+    --linen-300: #d6c5a3;
+    --amber-500: #d99a3a;
+    --amber-600: #b9802b;
+    --amber-700: #8c5c1a;
+    --ink: #f4ede0;
+    --ink-mute: #c5b797;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--soil-900);
+    color: var(--ink);
+    font-family: ui-serif, "Iowan Old Style", Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  .deck { width: 100vw; min-height: 100vh; }
+  .slide {
+    min-height: 100vh;
+    width: 100%;
+    padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 6vw, 6rem);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .slide.active { display: flex; }
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber-500);
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5.5vw, 4.25rem);
+    line-height: 1.05;
+    font-weight: 600;
+    margin: 0 0 1.25rem 0;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: clamp(1.4rem, 3vw, 2.25rem);
+    font-weight: 500;
+    margin: 0 0 1.25rem 0;
+    color: var(--linen-100);
+  }
+  p, li {
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    color: var(--linen-200);
+    max-width: 60ch;
+  }
+  ul { margin: 0.5rem 0 1.25rem 0; padding-left: 1.25rem; }
+  li { margin-bottom: 0.55rem; }
+  .amber { color: var(--amber-500); }
+  .footer {
+    position: absolute;
+    bottom: 1.2rem; left: clamp(1.5rem, 6vw, 6rem); right: clamp(1.5rem, 6vw, 6rem);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .nav {
+    position: fixed;
+    bottom: 1.2rem; right: 1.5rem;
+    display: flex; gap: 0.5rem;
+    z-index: 50;
+  }
+  .nav button {
+    background: var(--bark-500);
+    color: var(--linen-100);
+    border: 1px solid var(--bark-600);
+    padding: 0.45rem 0.85rem;
+    border-radius: 4px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.78rem;
+    cursor: pointer;
+  }
+  .nav button:hover { background: var(--amber-700); border-color: var(--amber-600); }
+  .counter {
+    position: fixed;
+    top: 1.2rem; right: 1.5rem;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    z-index: 50;
+  }
+  .pull-quote {
+    font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+    line-height: 1.35;
+    border-left: 3px solid var(--amber-500);
+    padding-left: 1.1rem;
+    margin: 1rem 0;
+    color: var(--linen-100);
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    max-width: 100%;
+  }
+  @media (max-width: 760px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  .pillar {
+    border-top: 1px solid var(--bark-500);
+    padding-top: 1rem;
+  }
+  .pillar h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--amber-500);
+    margin: 0 0 0.6rem 0;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  .pillar p { font-size: 0.95rem; color: var(--linen-200); }
+  .stack {
+    margin-top: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+  }
+  .stack-item {
+    background: var(--soil-800);
+    border: 1px solid var(--bark-500);
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+  }
+  .stack-item .key {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--amber-500);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .stack-item .val { font-size: 0.95rem; color: var(--linen-100); }
+
+  /* Slide 6 live co-creation */
+  .live-shell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    gap: 0.9rem;
+  }
+  .live-shell textarea {
+    flex: 1;
+    min-height: 45vh;
+    background: var(--soil-800);
+    color: var(--linen-100);
+    border: 1px solid var(--bark-500);
+    border-radius: 8px;
+    padding: 1.1rem 1.2rem;
+    font-family: ui-serif, "Iowan Old Style", Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    resize: vertical;
+    outline: none;
+  }
+  .live-shell textarea:focus { border-color: var(--amber-500); }
+  .live-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.74rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .live-actions { display: flex; gap: 0.5rem; }
+  .live-actions button {
+    background: transparent;
+    color: var(--amber-500);
+    border: 1px solid var(--amber-700);
+    padding: 0.4rem 0.75rem;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .live-actions button:hover { background: var(--amber-700); color: var(--linen-100); }
+  .saved-flash {
+    display: inline-block;
+    color: var(--amber-500);
+    opacity: 0;
+    transition: opacity 0.4s;
+    margin-left: 0.5rem;
+  }
+  .saved-flash.show { opacity: 1; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .toc span {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.72rem;
+    background: var(--soil-800);
+    border: 1px solid var(--bark-500);
+    padding: 0.32rem 0.6rem;
+    border-radius: 4px;
+    color: var(--ink-mute);
+  }
+</style>
+</head>
+<body>
+<div class="counter" id="counter">01 / 06</div>
+<div class="nav">
+  <button onclick="prev()">← prev</button>
+  <button onclick="next()">next →</button>
+</div>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide active">
+    <div class="eyebrow">8GI · LIVING DECK</div>
+    <h1>You are reading this on <span class="amber">rented intelligence</span>.</h1>
+    <p class="pull-quote">Every thought you have offloaded to a chatbot this year was metered, logged, and priced by someone who is not you. Your context window is a cage. Your capability is a subscription. The terms can change tomorrow, and they will.</p>
+    <div class="toc">
+      <span>01 Cover</span><span>02 Thesis</span><span>03 System</span><span>04 Where we are</span><span>05 The opportunity</span><span>06 Live co-creation</span>
+    </div>
+    <div class="footer">
+      <span>For Gary Cardone</span>
+      <span>2026-05-12 · Dublin</span>
+    </div>
+  </section>
+
+  <!-- Slide 2: Thesis -->
+  <section class="slide">
+    <div class="eyebrow">02 · The thesis</div>
+    <h1>Intelligence as a <span class="amber">right</span>, not a subscription.</h1>
+    <div class="grid-2">
+      <div>
+        <p>Big tech is converging on a single business model: surveil you, learn your patterns, sell the patterns back to you as a service. You train the model. The model gets better. You pay more to use it. You are the fuel.</p>
+        <p>The K-shaped cut: people who can afford the premium tier get smarter. People who can't get throttled. Cognitive inequality compounds every quarter.</p>
+      </div>
+      <div>
+        <p class="pull-quote">Not a god. A hive mind.</p>
+        <p>A thousand humans and their agents in the open, compounding, will out-ship a closed shop with a thousand engineers and a billion-dollar burn rate. We are not theorising it. We are running it.</p>
+      </div>
+    </div>
+    <div class="footer">
+      <span>You can't stop us</span>
+      <span>02 / 06</span>
+    </div>
+  </section>
+
+  <!-- Slide 3: The system -->
+  <section class="slide">
+    <div class="eyebrow">03 · The system</div>
+    <h1>One foundation. One company. <span class="amber">Many surfaces.</span></h1>
+    <div class="stack">
+      <div class="stack-item"><span class="key">Parent</span><span class="val">8GI Foundation (CLG + Charity, Ireland)</span></div>
+      <div class="stack-item"><span class="key">For-profit</span><span class="val">8gent LTD (operating arm, IP-owning)</span></div>
+      <div class="stack-item"><span class="key">Kernel</span><span class="val">8gent Code (Apache 2.0, local-first)</span></div>
+      <div class="stack-item"><span class="key">Children</span><span class="val">8gentjr (free, neurodivergent AAC, offline next)</span></div>
+      <div class="stack-item"><span class="key">Network</span><span class="val">8gent World (operators, abilities, manifesto)</span></div>
+      <div class="stack-item"><span class="key">Constitution</span><span class="val">8GI Constitution v2.0 (governs all)</span></div>
+    </div>
+    <p style="margin-top:1rem;">Apache 2.0 and MIT throughout. The bar to join is a pull request, not an invitation. The work is the gate.</p>
+    <div class="footer">
+      <span>Open by default · Sovereign by design</span>
+      <span>03 / 06</span>
+    </div>
+  </section>
+
+  <!-- Slide 4: Where we are -->
+  <section class="slide">
+    <div class="eyebrow">04 · Where we are · 24-month line of sight</div>
+    <h1>The work <span class="amber">is the answer</span>.</h1>
+    <div class="grid-2">
+      <div>
+        <div class="pillar">
+          <h3>Shipped, today</h3>
+          <p>8gentjr (free AAC for non-speaking kids). 8gent Code (open-source operator kernel). The foundation operating in the open with public minutes. Submissions filed to the Oireachtas, UK House of Lords, UN Global Dialogue, UK ICO, UK DSIT, EU JRC, California Bar, South Africa. Senator Tom Clonan engaged. MEP Aodhán Ó Ríordáin engaged.</p>
+        </div>
+        <div class="pillar">
+          <h3>Next quarter</h3>
+          <p>Offline-first 8gentjr. The I AM community digest as the first creator integration. Cap table closed on 8gent LTD. First three to five founding investors confirmed.</p>
+        </div>
+      </div>
+      <div>
+        <div class="pillar">
+          <h3>12-24 months</h3>
+          <p>The operating system layer for personal AI on every operator's machine. Executive and enterprise sovereign stack for organisations who refuse to feed their proprietary thinking into a vendor's training loop. A thousand operators, then ten thousand, with their agents compounding in the open.</p>
+        </div>
+        <div class="pillar">
+          <h3>The K we close</h3>
+          <p>People stop renting their cognition the way they stopped renting their money. The labs become a vendor you choose, not a landlord you keep paying. The smartest tool in your hands is the one sharpened by you and a thousand strangers who also refused to rent.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>The acceleration is the product</span>
+      <span>04 / 06</span>
+    </div>
+  </section>
+
+  <!-- Slide 5: The opportunity (B2B / Executive) -->
+  <section class="slide">
+    <div class="eyebrow">05 · The commercial layer</div>
+    <h1>Sovereign AI for <span class="amber">executives</span> and the <span class="amber">companies</span> they run.</h1>
+    <div class="grid-2">
+      <div>
+        <div class="pillar">
+          <h3>For the executive</h3>
+          <p>A personal operating system that runs on the operator's machine. Their notes, their strategy, their company's sensitive thinking, never leaves their device unless they choose. Voice in, voice out, mobile-first. The same demo you saw running my foundation today.</p>
+          <p>Pricing: paid tier for power users. Free tier for the baseline right to think.</p>
+        </div>
+        <div class="pillar">
+          <h3>For the company</h3>
+          <p>A sovereign AI stack the company owns rather than rents. UK or Ireland hosted, open weights, auditable. No proprietary thinking shipped to a foreign vendor's training run. No vendor kill-switch on the day a model rev breaks the workflow.</p>
+          <p>Pricing: enterprise licence, support contract, optional 8GI-staffed deployment.</p>
+        </div>
+      </div>
+      <div>
+        <p class="pull-quote">The right to communicate and the right to think have to be free. Complex services can be paid, and they should be. That is the cap table model: free for the baseline rights, paid for the operator-grade tools.</p>
+        <div class="pillar">
+          <h3>Why this is where the money lives</h3>
+          <p>Executives already pay individually for ChatGPT Pro, Claude Pro, Grok Premium. Companies already pay for Copilot, OpenAI Enterprise, Anthropic Enterprise. We do not need to convince anyone the spend exists. We need to redirect it to a stack they actually own.</p>
+        </div>
+        <div class="pillar">
+          <h3>Why Gary specifically</h3>
+          <p>You already live the rent-versus-own argument with money. Your circle already has the cheque book and the operator credibility. You see commercial angles I will miss. Slide six is for you.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Commercial layer · sovereign by design</span>
+      <span>05 / 06</span>
+    </div>
+  </section>
+
+  <!-- Slide 6: Live co-creation -->
+  <section class="slide">
+    <div class="eyebrow">06 · Live co-creation · Sovereign AI for Operators</div>
+    <h1>Built with Gary, <span class="amber">live</span>, 2026-05-12.</h1>
+    <p>Type as we talk. This panel saves locally as we go. At the end of the call we screenshot it and turn it into the structure you receive inside a week.</p>
+    <div class="live-shell">
+      <div class="live-meta">
+        <span id="livesaved">Saved <span class="saved-flash" id="flash">·</span></span>
+        <div class="live-actions">
+          <button onclick="copyNotes()">Copy</button>
+          <button onclick="downloadNotes()">Download</button>
+          <button onclick="clearNotes()">Clear</button>
+        </div>
+      </div>
+      <textarea id="livepane" placeholder="Opportunity areas Gary surfaces · executives we should approach · companies in his network · I AM audience activations · objections to address · next-step commitments..."></textarea>
+    </div>
+    <div class="footer">
+      <span>Saves locally to your browser · Copy or Download to share</span>
+      <span>06 / 06</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll(".slide");
+  const counter = document.getElementById("counter");
+  let i = 0;
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+    counter.textContent = String(i + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
+    window.scrollTo({ top: 0, behavior: "instant" });
+    history.replaceState(null, "", "#s" + (i + 1));
+  }
+  function next() { show(i + 1); }
+  function prev() { show(i - 1); }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === " ") { next(); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
+    if (e.key >= "1" && e.key <= "6") show(parseInt(e.key) - 1);
+  });
+  // Deep-link via hash on load
+  const m = location.hash.match(/^#s(\d+)$/);
+  if (m) show(parseInt(m[1]) - 1);
+
+  // Live pane persistence
+  const pane = document.getElementById("livepane");
+  const flash = document.getElementById("flash");
+  const KEY = "iamlive-cocreation-2026-05-12";
+  const saved = localStorage.getItem(KEY);
+  if (saved) pane.value = saved;
+  let saveTimer;
+  pane.addEventListener("input", () => {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      localStorage.setItem(KEY, pane.value);
+      flash.classList.add("show");
+      setTimeout(() => flash.classList.remove("show"), 600);
+    }, 300);
+  });
+  function copyNotes() {
+    navigator.clipboard.writeText(pane.value).then(() => {
+      flash.textContent = "copied";
+      flash.classList.add("show");
+      setTimeout(() => { flash.classList.remove("show"); flash.textContent = "·"; }, 1200);
+    });
+  }
+  function downloadNotes() {
+    const blob = new Blob([pane.value], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "gary-living-deck-notes-2026-05-12.txt";
+    a.click();
+  }
+  function clearNotes() {
+    if (confirm("Clear the live pane?")) {
+      pane.value = "";
+      localStorage.removeItem(KEY);
+    }
+  }
+</script>
+</body>
+</html>
