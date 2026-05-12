@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>8GI · Living Deck · Gary Cardone · 2026-05-12</title>
+<title>What you're missing · A living conversation · 2026-05-12</title>
 <style>
   :root {
     --soil-900: #1a1410;
@@ -65,7 +65,7 @@
   p, li {
     font-size: clamp(1rem, 1.6vw, 1.25rem);
     color: var(--linen-200);
-    max-width: 60ch;
+    max-width: 62ch;
   }
   ul { margin: 0.5rem 0 1.25rem 0; padding-left: 1.25rem; }
   li { margin-bottom: 0.55rem; }
@@ -126,6 +126,7 @@
   .pillar {
     border-top: 1px solid var(--bark-500);
     padding-top: 1rem;
+    margin-bottom: 1.25rem;
   }
   .pillar h3 {
     font-size: 1.1rem;
@@ -136,30 +137,30 @@
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
   }
   .pillar p { font-size: 0.95rem; color: var(--linen-200); }
-  .stack {
-    margin-top: 1.25rem;
+  .capability-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.85rem;
+    margin-top: 1rem;
   }
-  .stack-item {
+  .cap {
     background: var(--soil-800);
     border: 1px solid var(--bark-500);
-    border-radius: 6px;
-    padding: 0.9rem 1rem;
+    border-left: 3px solid var(--amber-500);
+    padding: 1rem 1.1rem;
+    border-radius: 4px;
   }
-  .stack-item .key {
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
+  .cap .num {
+    font-family: ui-monospace, monospace;
+    font-size: 0.72rem;
     color: var(--amber-500);
-    text-transform: uppercase;
+    letter-spacing: 0.15em;
     display: block;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
   }
-  .stack-item .val { font-size: 0.95rem; color: var(--linen-100); }
+  .cap p { font-size: 0.95rem; margin: 0; color: var(--linen-100); }
+  .cap em { font-style: normal; color: var(--ink-mute); display: block; margin-top: 0.4rem; font-size: 0.82rem; }
 
-  /* Slide 6 live co-creation */
   .live-shell {
     flex: 1;
     display: flex;
@@ -213,6 +214,31 @@
   }
   .saved-flash.show { opacity: 1; }
 
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0 1.25rem 0;
+  }
+  .stat {
+    background: var(--soil-800);
+    border: 1px solid var(--bark-500);
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+  }
+  .stat .figure {
+    font-family: ui-monospace, monospace;
+    font-size: 1.8rem;
+    color: var(--amber-500);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat .label {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+  }
   .toc {
     display: flex; flex-wrap: wrap; gap: 0.5rem;
     margin-top: 1.5rem;
@@ -238,129 +264,139 @@
 
   <!-- Slide 1: Cover -->
   <section class="slide active">
-    <div class="eyebrow">8GI · LIVING DECK</div>
-    <h1>You are reading this on <span class="amber">rented intelligence</span>.</h1>
-    <p class="pull-quote">Every thought you have offloaded to a chatbot this year was metered, logged, and priced by someone who is not you. Your context window is a cage. Your capability is a subscription. The terms can change tomorrow, and they will.</p>
+    <div class="eyebrow">A LIVING CONVERSATION · 2026-05-12 · DUBLIN ↔ AVENTURA</div>
+    <h1>You're using <span class="amber">2% of what's possible</span>. Let me show you the other 98.</h1>
+    <p class="pull-quote">ChatGPT and Grok in a browser tab is the cigarette lighter on the dashboard of a car you have not driven yet. There is an entire vehicle under it. I have been driving mine for two years. Today I want to hand you the keys.</p>
     <div class="toc">
-      <span>01 Cover</span><span>02 Thesis</span><span>03 System</span><span>04 Where we are</span><span>05 The opportunity</span><span>06 Live co-creation</span>
+      <span>01 The keys</span>
+      <span>02 What you're missing</span>
+      <span>03 Epistemic capture</span>
+      <span>04 The workforce trap</span>
+      <span>05 The sovereign alternative</span>
+      <span>06 Live with Gary</span>
     </div>
     <div class="footer">
       <span>For Gary Cardone</span>
-      <span>2026-05-12 · Dublin</span>
+      <span>James Spalding · 8GI Foundation</span>
     </div>
   </section>
 
-  <!-- Slide 2: Thesis -->
+  <!-- Slide 2: What you're missing (the wow) -->
   <section class="slide">
-    <div class="eyebrow">02 · The thesis</div>
-    <h1>Intelligence as a <span class="amber">right</span>, not a subscription.</h1>
-    <div class="grid-2">
-      <div>
-        <p>Big tech is converging on a single business model: surveil you, learn your patterns, sell the patterns back to you as a service. You train the model. The model gets better. You pay more to use it. You are the fuel.</p>
-        <p>The K-shaped cut: people who can afford the premium tier get smarter. People who can't get throttled. Cognitive inequality compounds every quarter.</p>
-      </div>
-      <div>
-        <p class="pull-quote">Not a god. A hive mind.</p>
-        <p>A thousand humans and their agents in the open, compounding, will out-ship a closed shop with a thousand engineers and a billion-dollar burn rate. We are not theorising it. We are running it.</p>
-      </div>
+    <div class="eyebrow">02 · What you're missing</div>
+    <h1>The stack you do not yet know exists.</h1>
+    <p>Eight things I do every day that ChatGPT and Grok structurally cannot do. Watch me run them live during this call.</p>
+    <div class="capability-grid">
+      <div class="cap"><span class="num">01</span><p>I talk to my phone. My desktop convenes a board of eight specialised agents. They debate the question in parallel. I get a structured decision in voice in under ninety seconds.</p><em>Dispatch + boardroom + voice in/out</em></div>
+      <div class="cap"><span class="num">02</span><p>I dictate one sentence in a taxi. By the time I get home, a landing page is shipped, an email is drafted, a Telegram bridge is configured.</p><em>Mobile orchestration · end-to-end</em></div>
+      <div class="cap"><span class="num">03</span><p>My memory is not their memory. My patterns, my notes, my code, my drafts, persist locally. The labs go down, the price doubles, the model rev breaks. None of it touches me.</p><em>Local-first persistence</em></div>
+      <div class="cap"><span class="num">04</span><p>I run eleven model providers behind one router. When OpenAI rate-limits I am on Anthropic. When Anthropic rate-limits I am on local Qwen. The model is a commodity. The OS is mine.</p><em>Adaptive provider routing</em></div>
+      <div class="cap"><span class="num">05</span><p>My agents read my email, file my tasks, follow up on threads, draft replies in my voice, never send without my approval. The inbox is finally an inbox.</p><em>Auditable autonomy</em></div>
+      <div class="cap"><span class="num">06</span><p>One person operates a foundation across eight officers, sixty repos, hundreds of skills, and twelve product surfaces. The leverage is not theoretical.</p><em>One-person CTO scale</em></div>
+      <div class="cap"><span class="num">07</span><p>I built my non-speaking son a communication app in a weekend. Free. People own it. He never loses his vocabulary to a vendor again.</p><em>Sovereign by necessity</em></div>
+      <div class="cap"><span class="num">08</span><p>I am building this in the open. Apache 2.0. The repo, the constitution, the boardroom minutes. The work is the gate.</p><em>Verifiable by anyone</em></div>
     </div>
     <div class="footer">
-      <span>You can't stop us</span>
+      <span>Demo it live, do not narrate it</span>
       <span>02 / 06</span>
     </div>
   </section>
 
-  <!-- Slide 3: The system -->
+  <!-- Slide 3: Epistemic capture -->
   <section class="slide">
-    <div class="eyebrow">03 · The system</div>
-    <h1>One foundation. One company. <span class="amber">Many surfaces.</span></h1>
-    <div class="stack">
-      <div class="stack-item"><span class="key">Parent</span><span class="val">8GI Foundation (CLG + Charity, Ireland)</span></div>
-      <div class="stack-item"><span class="key">For-profit</span><span class="val">8gent LTD (operating arm, IP-owning)</span></div>
-      <div class="stack-item"><span class="key">Kernel</span><span class="val">8gent Code (Apache 2.0, local-first)</span></div>
-      <div class="stack-item"><span class="key">Children</span><span class="val">8gentjr (free, neurodivergent AAC, offline next)</span></div>
-      <div class="stack-item"><span class="key">Network</span><span class="val">8gent World (operators, abilities, manifesto)</span></div>
-      <div class="stack-item"><span class="key">Constitution</span><span class="val">8GI Constitution v2.0 (governs all)</span></div>
+    <div class="eyebrow">03 · The deeper problem</div>
+    <h1>Epistemic capture. Quietly, already, <span class="amber">underway</span>.</h1>
+    <div class="grid-2">
+      <div>
+        <p>Three or four foreign commercial labs have become the cognitive default for a billion knowledge workers. Every prompt you type, every answer you accept without re-deriving, every framing you adopt because the model offered it first, sits inside a worldview shaped by their training data, their reinforcement choices, their system prompts, their hidden refusals.</p>
+        <p>You are not just renting compute. You are renting a frame on reality. And the frame has authors. You do not know them. You do not vote for them. You cannot inspect them. You cannot fork them.</p>
+      </div>
+      <div>
+        <p class="pull-quote">Whoever owns the model that sits between you and the question owns the question.</p>
+        <div class="pillar">
+          <h3>The mechanism</h3>
+          <p>Training data selection. RLHF objectives. System prompt overrides. Refusal patterns. Output throttling for certain queries. Search index weighting. The default-model setting. Each is a small editorial decision. Stacked, they constitute a worldview.</p>
+        </div>
+        <div class="pillar">
+          <h3>The compounding</h3>
+          <p>Every quarter the share of human cognition mediated through these systems goes up. Every quarter the leverage of three or four labs over public reasoning compounds. Nobody voted for this. The Spalding Paradox: the entities with the largest commercial interest in the answer are increasingly the ones writing the question.</p>
+        </div>
+      </div>
     </div>
-    <p style="margin-top:1rem;">Apache 2.0 and MIT throughout. The bar to join is a pull request, not an invitation. The work is the gate.</p>
     <div class="footer">
-      <span>Open by default · Sovereign by design</span>
+      <span>Not a conspiracy. A structure.</span>
       <span>03 / 06</span>
     </div>
   </section>
 
-  <!-- Slide 4: Where we are -->
+  <!-- Slide 4: Workforce trap -->
   <section class="slide">
-    <div class="eyebrow">04 · Where we are · 24-month line of sight</div>
-    <h1>The work <span class="amber">is the answer</span>.</h1>
+    <div class="eyebrow">04 · The workforce reality</div>
+    <h1>Knowledge workers are <span class="amber">already</span> on the leash.</h1>
     <div class="grid-2">
       <div>
-        <div class="pillar">
-          <h3>Shipped, today</h3>
-          <p>8gentjr (free AAC for non-speaking kids). 8gent Code (open-source operator kernel). The foundation operating in the open with public minutes. Submissions filed to the Oireachtas, UK House of Lords, UN Global Dialogue, UK ICO, UK DSIT, EU JRC, California Bar, South Africa. Senator Tom Clonan engaged. MEP Aodhán Ó Ríordáin engaged.</p>
-        </div>
-        <div class="pillar">
-          <h3>Next quarter</h3>
-          <p>Offline-first 8gentjr. The I AM community digest as the first creator integration. Cap table closed on 8gent LTD. First three to five founding investors confirmed.</p>
-        </div>
+        <p>The professional class has, in eighteen months, made AI assistance load-bearing for daily work. Juniors cannot draft a memo without Claude. Mid-level analysts cannot model without GPT. Senior partners review what their juniors generated with Grok. Engineers do not write code without Copilot. Marketers do not write copy without GPT. Designers do not iterate without Midjourney.</p>
+        <p>This was sold as a productivity tool. It has become an oxygen line.</p>
       </div>
       <div>
         <div class="pillar">
-          <h3>12-24 months</h3>
-          <p>The operating system layer for personal AI on every operator's machine. Executive and enterprise sovereign stack for organisations who refuse to feed their proprietary thinking into a vendor's training loop. A thousand operators, then ten thousand, with their agents compounding in the open.</p>
+          <h3>The squeeze that is coming</h3>
+          <p>The labs are losing money on every power user. They will price up. They will tier-gate the frontier model. They will rate-limit the heavy hitter. They will silently nerf the cheap tier. They will sunset the model your workflow depended on.</p>
         </div>
         <div class="pillar">
-          <h3>The K we close</h3>
-          <p>People stop renting their cognition the way they stopped renting their money. The labs become a vendor you choose, not a landlord you keep paying. The smartest tool in your hands is the one sharpened by you and a thousand strangers who also refused to rent.</p>
+          <h3>The slavery is structural</h3>
+          <p>A knowledge worker who cannot afford the premium tier loses the ability to compete in a labour market where their peers can. A company that depends on a single AI provider to operate is one Terms-of-Service update from a continuity event. The means of cognitive production have been re-rented to a tiny number of landlords. This is not hypothetical. This is the third quarter of next year.</p>
+        </div>
+        <div class="pillar">
+          <h3>What it forecloses</h3>
+          <p>Original thinking. Local language nuance. Heterodox positions. Anything outside the lab's training-time worldview. Slowly, then very quickly, public reasoning narrows to the band the labs sell.</p>
         </div>
       </div>
     </div>
     <div class="footer">
-      <span>The acceleration is the product</span>
+      <span>Renting your mind has the same end as renting your home in a bubble</span>
       <span>04 / 06</span>
     </div>
   </section>
 
-  <!-- Slide 5: The opportunity (B2B / Executive) -->
+  <!-- Slide 5: Sovereign alternative + B2B layer -->
   <section class="slide">
-    <div class="eyebrow">05 · The commercial layer</div>
-    <h1>Sovereign AI for <span class="amber">executives</span> and the <span class="amber">companies</span> they run.</h1>
+    <div class="eyebrow">05 · The sovereign alternative</div>
+    <h1>Own the building. Pay no rent. <span class="amber">Run the stack yourself.</span></h1>
     <div class="grid-2">
       <div>
         <div class="pillar">
           <h3>For the executive</h3>
-          <p>A personal operating system that runs on the operator's machine. Their notes, their strategy, their company's sensitive thinking, never leaves their device unless they choose. Voice in, voice out, mobile-first. The same demo you saw running my foundation today.</p>
-          <p>Pricing: paid tier for power users. Free tier for the baseline right to think.</p>
+          <p>A personal operating system that lives on your machine. Your notes, your strategy, your company's sensitive thinking, never leaves the device unless you choose. Voice in, voice out, mobile-first. Multi-provider router so no single lab can hold you hostage. Free baseline. Paid tier for operator-grade tools.</p>
         </div>
         <div class="pillar">
           <h3>For the company</h3>
-          <p>A sovereign AI stack the company owns rather than rents. UK or Ireland hosted, open weights, auditable. No proprietary thinking shipped to a foreign vendor's training run. No vendor kill-switch on the day a model rev breaks the workflow.</p>
-          <p>Pricing: enterprise licence, support contract, optional 8GI-staffed deployment.</p>
+          <p>A sovereign AI stack the company owns, not rents. Self-hosted, open-weight, auditable. No proprietary thinking shipped to a foreign vendor's training run. No vendor kill-switch on the day a model rev breaks workflow. Enterprise licence + support + 8GI-led deployment.</p>
         </div>
       </div>
       <div>
-        <p class="pull-quote">The right to communicate and the right to think have to be free. Complex services can be paid, and they should be. That is the cap table model: free for the baseline rights, paid for the operator-grade tools.</p>
+        <p class="pull-quote">Bitcoin was sovereign money. 8GI is sovereign cognition. Same architecture. Different floor.</p>
         <div class="pillar">
-          <h3>Why this is where the money lives</h3>
-          <p>Executives already pay individually for ChatGPT Pro, Claude Pro, Grok Premium. Companies already pay for Copilot, OpenAI Enterprise, Anthropic Enterprise. We do not need to convince anyone the spend exists. We need to redirect it to a stack they actually own.</p>
+          <h3>Why now</h3>
+          <p>Open-weight models have crossed the threshold of usefulness. Apple Silicon and consumer GPUs are running 14B-parameter local models at conversational speed. The cost of running your own stack has collapsed. The cost of not running it is about to skyrocket.</p>
         </div>
         <div class="pillar">
-          <h3>Why Gary specifically</h3>
-          <p>You already live the rent-versus-own argument with money. Your circle already has the cheque book and the operator credibility. You see commercial angles I will miss. Slide six is for you.</p>
+          <h3>Why this conversation</h3>
+          <p>You already lived the rent-versus-own argument with money. Most operators need that argument explained. You do not. You bring the audience and the cheque book. I bring the working stack and the team. Cooperation, you said it yourself.</p>
         </div>
       </div>
     </div>
     <div class="footer">
-      <span>Commercial layer · sovereign by design</span>
+      <span>Personal sovereignty · enterprise sovereignty · same kernel</span>
       <span>05 / 06</span>
     </div>
   </section>
 
   <!-- Slide 6: Live co-creation -->
   <section class="slide">
-    <div class="eyebrow">06 · Live co-creation · Sovereign AI for Operators</div>
-    <h1>Built with Gary, <span class="amber">live</span>, 2026-05-12.</h1>
-    <p>Type as we talk. This panel saves locally as we go. At the end of the call we screenshot it and turn it into the structure you receive inside a week.</p>
+    <div class="eyebrow">06 · Live co-creation</div>
+    <h1>Built with you, <span class="amber">live</span>.</h1>
+    <p>Type as we talk. Opportunities you see. Companies you know who need this yesterday. Executives in your circle. Angles I am missing. This pane saves as we go. At the end I copy it and turn it into the structure you receive within seven days.</p>
     <div class="live-shell">
       <div class="live-meta">
         <span id="livesaved">Saved <span class="saved-flash" id="flash">·</span></span>
@@ -370,10 +406,10 @@
           <button onclick="clearNotes()">Clear</button>
         </div>
       </div>
-      <textarea id="livepane" placeholder="Opportunity areas Gary surfaces · executives we should approach · companies in his network · I AM audience activations · objections to address · next-step commitments..."></textarea>
+      <textarea id="livepane" placeholder="Where Gary sees the commercial wedge ·  executives we should approach first · companies primed for sovereign stack ·  I AM audience activations · objections he anticipates · next concrete commitment from both sides..."></textarea>
     </div>
     <div class="footer">
-      <span>Saves locally to your browser · Copy or Download to share</span>
+      <span>Saves locally · Copy or Download to share post-call</span>
       <span>06 / 06</span>
     </div>
   </section>
@@ -398,11 +434,9 @@
     if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
     if (e.key >= "1" && e.key <= "6") show(parseInt(e.key) - 1);
   });
-  // Deep-link via hash on load
   const m = location.hash.match(/^#s(\d+)$/);
   if (m) show(parseInt(m[1]) - 1);
 
-  // Live pane persistence
   const pane = document.getElementById("livepane");
   const flash = document.getElementById("flash");
   const KEY = "iamlive-cocreation-2026-05-12";
