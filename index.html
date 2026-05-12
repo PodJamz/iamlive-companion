@@ -3,80 +3,75 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>What you're missing · A living conversation · 2026-05-12</title>
+<title>What you're missing · 2026-05-12</title>
 <style>
   :root {
     --soil-900: #1a1410;
     --soil-800: #251c14;
-    --soil-700: #322517;
-    --bark-600: #3f2f1c;
     --bark-500: #4f3b25;
     --linen-100: #f4ede0;
     --linen-200: #e8dcc4;
-    --linen-300: #d6c5a3;
     --amber-500: #d99a3a;
-    --amber-600: #b9802b;
     --amber-700: #8c5c1a;
-    --ink: #f4ede0;
     --ink-mute: #c5b797;
   }
   * { box-sizing: border-box; }
   html, body {
     margin: 0; padding: 0;
     background: var(--soil-900);
-    color: var(--ink);
+    color: var(--linen-100);
     font-family: ui-serif, "Iowan Old Style", Georgia, "Times New Roman", serif;
-    font-size: 18px;
-    line-height: 1.5;
-    overflow-x: hidden;
+    line-height: 1.3;
   }
   .deck { width: 100vw; min-height: 100vh; }
   .slide {
     min-height: 100vh;
     width: 100%;
-    padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 6vw, 6rem);
+    padding: clamp(2rem, 8vw, 6rem);
     display: none;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     position: relative;
   }
   .slide.active { display: flex; }
   .eyebrow {
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
     font-size: 0.72rem;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--amber-500);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
-  h1 {
-    font-size: clamp(2rem, 5.5vw, 4.25rem);
-    line-height: 1.05;
+  .big {
+    font-size: clamp(2.4rem, 7vw, 6rem);
+    line-height: 1;
     font-weight: 600;
-    margin: 0 0 1.25rem 0;
-    letter-spacing: -0.01em;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.015em;
+    max-width: 18ch;
   }
-  h2 {
-    font-size: clamp(1.4rem, 3vw, 2.25rem);
+  .mid {
+    font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
     font-weight: 500;
-    margin: 0 0 1.25rem 0;
-    color: var(--linen-100);
+    margin: 0 0 1rem 0;
+    max-width: 22ch;
   }
-  p, li {
-    font-size: clamp(1rem, 1.6vw, 1.25rem);
-    color: var(--linen-200);
-    max-width: 62ch;
+  .sub {
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    color: var(--ink-mute);
+    max-width: 50ch;
+    margin: 0;
   }
-  ul { margin: 0.5rem 0 1.25rem 0; padding-left: 1.25rem; }
-  li { margin-bottom: 0.55rem; }
   .amber { color: var(--amber-500); }
   .footer {
     position: absolute;
-    bottom: 1.2rem; left: clamp(1.5rem, 6vw, 6rem); right: clamp(1.5rem, 6vw, 6rem);
+    bottom: 1.2rem; left: clamp(2rem, 8vw, 6rem); right: clamp(2rem, 8vw, 6rem);
     display: flex; justify-content: space-between; align-items: center;
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
     font-size: 0.7rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-mute);
   }
@@ -87,96 +82,43 @@
     z-index: 50;
   }
   .nav button {
-    background: var(--bark-500);
+    background: var(--soil-800);
     color: var(--linen-100);
-    border: 1px solid var(--bark-600);
-    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--bark-500);
+    padding: 0.4rem 0.8rem;
     border-radius: 4px;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 0.78rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
     cursor: pointer;
   }
-  .nav button:hover { background: var(--amber-700); border-color: var(--amber-600); }
+  .nav button:hover { background: var(--amber-700); }
   .counter {
     position: fixed;
     top: 1.2rem; right: 1.5rem;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-family: ui-monospace, monospace;
     font-size: 0.72rem;
     letter-spacing: 0.18em;
     color: var(--ink-mute);
     z-index: 50;
   }
-  .pull-quote {
-    font-size: clamp(1.1rem, 2.2vw, 1.7rem);
-    line-height: 1.35;
-    border-left: 3px solid var(--amber-500);
-    padding-left: 1.1rem;
-    margin: 1rem 0;
-    color: var(--linen-100);
-  }
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(1.5rem, 4vw, 3.5rem);
-    max-width: 100%;
-  }
-  @media (max-width: 760px) {
-    .grid-2 { grid-template-columns: 1fr; }
-  }
-  .pillar {
-    border-top: 1px solid var(--bark-500);
-    padding-top: 1rem;
-    margin-bottom: 1.25rem;
-  }
-  .pillar h3 {
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--amber-500);
-    margin: 0 0 0.6rem 0;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  }
-  .pillar p { font-size: 0.95rem; color: var(--linen-200); }
-  .capability-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 0.85rem;
-    margin-top: 1rem;
-  }
-  .cap {
-    background: var(--soil-800);
-    border: 1px solid var(--bark-500);
-    border-left: 3px solid var(--amber-500);
-    padding: 1rem 1.1rem;
-    border-radius: 4px;
-  }
-  .cap .num {
+  .num-tag {
     font-family: ui-monospace, monospace;
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     color: var(--amber-500);
-    letter-spacing: 0.15em;
-    display: block;
-    margin-bottom: 0.4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2em;
   }
-  .cap p { font-size: 0.95rem; margin: 0; color: var(--linen-100); }
-  .cap em { font-style: normal; color: var(--ink-mute); display: block; margin-top: 0.4rem; font-size: 0.82rem; }
-
-  .live-shell {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    gap: 0.9rem;
-  }
+  /* Live pane on final slide */
+  .live-shell { width: 100%; display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1rem; }
   .live-shell textarea {
-    flex: 1;
-    min-height: 45vh;
+    width: 100%;
+    min-height: 50vh;
     background: var(--soil-800);
     color: var(--linen-100);
     border: 1px solid var(--bark-500);
     border-radius: 8px;
     padding: 1.1rem 1.2rem;
-    font-family: ui-serif, "Iowan Old Style", Georgia, serif;
+    font-family: ui-serif, Georgia, serif;
     font-size: 1.05rem;
     line-height: 1.55;
     resize: vertical;
@@ -185,7 +127,7 @@
   .live-shell textarea:focus { border-color: var(--amber-500); }
   .live-meta {
     display: flex; justify-content: space-between; align-items: center;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-family: ui-monospace, monospace;
     font-size: 0.74rem;
     color: var(--ink-mute);
     letter-spacing: 0.1em;
@@ -197,7 +139,7 @@
     color: var(--amber-500);
     border: 1px solid var(--amber-700);
     padding: 0.4rem 0.75rem;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-family: ui-monospace, monospace;
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -205,201 +147,145 @@
     border-radius: 4px;
   }
   .live-actions button:hover { background: var(--amber-700); color: var(--linen-100); }
-  .saved-flash {
-    display: inline-block;
-    color: var(--amber-500);
-    opacity: 0;
-    transition: opacity 0.4s;
-    margin-left: 0.5rem;
-  }
-  .saved-flash.show { opacity: 1; }
-
-  .stat-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 0.75rem;
-    margin: 1rem 0 1.25rem 0;
-  }
-  .stat {
-    background: var(--soil-800);
-    border: 1px solid var(--bark-500);
-    padding: 0.85rem 1rem;
-    border-radius: 6px;
-  }
-  .stat .figure {
-    font-family: ui-monospace, monospace;
-    font-size: 1.8rem;
-    color: var(--amber-500);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-  .stat .label {
-    font-size: 0.78rem;
-    color: var(--ink-mute);
-    letter-spacing: 0.05em;
-    line-height: 1.3;
-  }
-  .toc {
-    display: flex; flex-wrap: wrap; gap: 0.5rem;
-    margin-top: 1.5rem;
-  }
-  .toc span {
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 0.72rem;
-    background: var(--soil-800);
-    border: 1px solid var(--bark-500);
-    padding: 0.32rem 0.6rem;
-    border-radius: 4px;
-    color: var(--ink-mute);
-  }
+  .flash { color: var(--amber-500); opacity: 0; transition: opacity 0.4s; margin-left: 0.5rem; }
+  .flash.show { opacity: 1; }
 </style>
 </head>
 <body>
-<div class="counter" id="counter">01 / 06</div>
+<div class="counter" id="counter">01 / 16</div>
 <div class="nav">
-  <button onclick="prev()">← prev</button>
-  <button onclick="next()">next →</button>
+  <button onclick="prev()">←</button>
+  <button onclick="next()">→</button>
 </div>
 <div class="deck">
 
-  <!-- Slide 1: Cover -->
+  <!-- 1 -->
   <section class="slide active">
-    <div class="eyebrow">A LIVING CONVERSATION · 2026-05-12 · DUBLIN ↔ AVENTURA</div>
-    <h1>You're using <span class="amber">2% of what's possible</span>. Let me show you the other 98.</h1>
-    <p class="pull-quote">ChatGPT and Grok in a browser tab is the cigarette lighter on the dashboard of a car you have not driven yet. There is an entire vehicle under it. I have been driving mine for two years. Today I want to hand you the keys.</p>
-    <div class="toc">
-      <span>01 The keys</span>
-      <span>02 What you're missing</span>
-      <span>03 Epistemic capture</span>
-      <span>04 The workforce trap</span>
-      <span>05 The sovereign alternative</span>
-      <span>06 Live with Gary</span>
-    </div>
-    <div class="footer">
-      <span>For Gary Cardone</span>
-      <span>James Spalding · 8GI Foundation</span>
-    </div>
+    <div class="eyebrow">For Gary Cardone · 2026-05-12</div>
+    <h1 class="big">You're using <span class="amber">2%</span> of what's possible.</h1>
+    <p class="sub">ChatGPT in a browser tab is the cigarette lighter on the dashboard of a car you've never driven. Let me show you the car.</p>
+    <div class="footer"><span>James Spalding · 8GI Foundation</span><span>01 / 16</span></div>
   </section>
 
-  <!-- Slide 2: What you're missing (the wow) -->
+  <!-- 2 -->
   <section class="slide">
-    <div class="eyebrow">02 · What you're missing</div>
-    <h1>The stack you do not yet know exists.</h1>
-    <p>Eight things I do every day that ChatGPT and Grok structurally cannot do. Watch me run them live during this call.</p>
-    <div class="capability-grid">
-      <div class="cap"><span class="num">01</span><p>I talk to my phone. My desktop convenes a board of eight specialised agents. They debate the question in parallel. I get a structured decision in voice in under ninety seconds.</p><em>Dispatch + boardroom + voice in/out</em></div>
-      <div class="cap"><span class="num">02</span><p>I dictate one sentence in a taxi. By the time I get home, a landing page is shipped, an email is drafted, a Telegram bridge is configured.</p><em>Mobile orchestration · end-to-end</em></div>
-      <div class="cap"><span class="num">03</span><p>My memory is not their memory. My patterns, my notes, my code, my drafts, persist locally. The labs go down, the price doubles, the model rev breaks. None of it touches me.</p><em>Local-first persistence</em></div>
-      <div class="cap"><span class="num">04</span><p>I run eleven model providers behind one router. When OpenAI rate-limits I am on Anthropic. When Anthropic rate-limits I am on local Qwen. The model is a commodity. The OS is mine.</p><em>Adaptive provider routing</em></div>
-      <div class="cap"><span class="num">05</span><p>My agents read my email, file my tasks, follow up on threads, draft replies in my voice, never send without my approval. The inbox is finally an inbox.</p><em>Auditable autonomy</em></div>
-      <div class="cap"><span class="num">06</span><p>One person operates a foundation across eight officers, sixty repos, hundreds of skills, and twelve product surfaces. The leverage is not theoretical.</p><em>One-person CTO scale</em></div>
-      <div class="cap"><span class="num">07</span><p>I built my non-speaking son a communication app in a weekend. Free. People own it. He never loses his vocabulary to a vendor again.</p><em>Sovereign by necessity</em></div>
-      <div class="cap"><span class="num">08</span><p>I am building this in the open. Apache 2.0. The repo, the constitution, the boardroom minutes. The work is the gate.</p><em>Verifiable by anyone</em></div>
-    </div>
-    <div class="footer">
-      <span>Demo it live, do not narrate it</span>
-      <span>02 / 06</span>
-    </div>
+    <div class="eyebrow">What you're missing · 01 of 08</div>
+    <h2 class="mid">I talk to my phone. <span class="amber">Eight agents decide together.</span> In 90 seconds.</h2>
+    <p class="sub">Live demo. Watch.</p>
+    <div class="footer"><span>Mobile boardroom</span><span>02 / 16</span></div>
   </section>
 
-  <!-- Slide 3: Epistemic capture -->
+  <!-- 3 -->
   <section class="slide">
-    <div class="eyebrow">03 · The deeper problem</div>
-    <h1>Epistemic capture. Quietly, already, <span class="amber">underway</span>.</h1>
-    <div class="grid-2">
-      <div>
-        <p>Three or four foreign commercial labs have become the cognitive default for a billion knowledge workers. Every prompt you type, every answer you accept without re-deriving, every framing you adopt because the model offered it first, sits inside a worldview shaped by their training data, their reinforcement choices, their system prompts, their hidden refusals.</p>
-        <p>You are not just renting compute. You are renting a frame on reality. And the frame has authors. You do not know them. You do not vote for them. You cannot inspect them. You cannot fork them.</p>
-      </div>
-      <div>
-        <p class="pull-quote">Whoever owns the model that sits between you and the question owns the question.</p>
-        <div class="pillar">
-          <h3>The mechanism</h3>
-          <p>Training data selection. RLHF objectives. System prompt overrides. Refusal patterns. Output throttling for certain queries. Search index weighting. The default-model setting. Each is a small editorial decision. Stacked, they constitute a worldview.</p>
-        </div>
-        <div class="pillar">
-          <h3>The compounding</h3>
-          <p>Every quarter the share of human cognition mediated through these systems goes up. Every quarter the leverage of three or four labs over public reasoning compounds. Nobody voted for this. The Spalding Paradox: the entities with the largest commercial interest in the answer are increasingly the ones writing the question.</p>
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <span>Not a conspiracy. A structure.</span>
-      <span>03 / 06</span>
-    </div>
+    <div class="eyebrow">What you're missing · 02 of 08</div>
+    <h2 class="mid">Dictate one sentence in a taxi. <span class="amber">Ship before you're home.</span></h2>
+    <p class="sub">Email, landing page, Telegram bot. End to end, from a phone.</p>
+    <div class="footer"><span>Mobile orchestration</span><span>03 / 16</span></div>
   </section>
 
-  <!-- Slide 4: Workforce trap -->
+  <!-- 4 -->
   <section class="slide">
-    <div class="eyebrow">04 · The workforce reality</div>
-    <h1>Knowledge workers are <span class="amber">already</span> on the leash.</h1>
-    <div class="grid-2">
-      <div>
-        <p>The professional class has, in eighteen months, made AI assistance load-bearing for daily work. Juniors cannot draft a memo without Claude. Mid-level analysts cannot model without GPT. Senior partners review what their juniors generated with Grok. Engineers do not write code without Copilot. Marketers do not write copy without GPT. Designers do not iterate without Midjourney.</p>
-        <p>This was sold as a productivity tool. It has become an oxygen line.</p>
-      </div>
-      <div>
-        <div class="pillar">
-          <h3>The squeeze that is coming</h3>
-          <p>The labs are losing money on every power user. They will price up. They will tier-gate the frontier model. They will rate-limit the heavy hitter. They will silently nerf the cheap tier. They will sunset the model your workflow depended on.</p>
-        </div>
-        <div class="pillar">
-          <h3>The slavery is structural</h3>
-          <p>A knowledge worker who cannot afford the premium tier loses the ability to compete in a labour market where their peers can. A company that depends on a single AI provider to operate is one Terms-of-Service update from a continuity event. The means of cognitive production have been re-rented to a tiny number of landlords. This is not hypothetical. This is the third quarter of next year.</p>
-        </div>
-        <div class="pillar">
-          <h3>What it forecloses</h3>
-          <p>Original thinking. Local language nuance. Heterodox positions. Anything outside the lab's training-time worldview. Slowly, then very quickly, public reasoning narrows to the band the labs sell.</p>
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <span>Renting your mind has the same end as renting your home in a bubble</span>
-      <span>04 / 06</span>
-    </div>
+    <div class="eyebrow">What you're missing · 03 of 08</div>
+    <h2 class="mid">My memory is <span class="amber">mine</span>. Their outage is not my outage.</h2>
+    <p class="sub">Stop paying ChatGPT and your archive evaporates. Stop paying mine and nothing changes.</p>
+    <div class="footer"><span>Local-first persistence</span><span>04 / 16</span></div>
   </section>
 
-  <!-- Slide 5: Sovereign alternative + B2B layer -->
+  <!-- 5 -->
   <section class="slide">
-    <div class="eyebrow">05 · The sovereign alternative</div>
-    <h1>Own the building. Pay no rent. <span class="amber">Run the stack yourself.</span></h1>
-    <div class="grid-2">
-      <div>
-        <div class="pillar">
-          <h3>For the executive</h3>
-          <p>A personal operating system that lives on your machine. Your notes, your strategy, your company's sensitive thinking, never leaves the device unless you choose. Voice in, voice out, mobile-first. Multi-provider router so no single lab can hold you hostage. Free baseline. Paid tier for operator-grade tools.</p>
-        </div>
-        <div class="pillar">
-          <h3>For the company</h3>
-          <p>A sovereign AI stack the company owns, not rents. Self-hosted, open-weight, auditable. No proprietary thinking shipped to a foreign vendor's training run. No vendor kill-switch on the day a model rev breaks workflow. Enterprise licence + support + 8GI-led deployment.</p>
-        </div>
-      </div>
-      <div>
-        <p class="pull-quote">Bitcoin was sovereign money. 8GI is sovereign cognition. Same architecture. Different floor.</p>
-        <div class="pillar">
-          <h3>Why now</h3>
-          <p>Open-weight models have crossed the threshold of usefulness. Apple Silicon and consumer GPUs are running 14B-parameter local models at conversational speed. The cost of running your own stack has collapsed. The cost of not running it is about to skyrocket.</p>
-        </div>
-        <div class="pillar">
-          <h3>Why this conversation</h3>
-          <p>You already lived the rent-versus-own argument with money. Most operators need that argument explained. You do not. You bring the audience and the cheque book. I bring the working stack and the team. Cooperation, you said it yourself.</p>
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <span>Personal sovereignty · enterprise sovereignty · same kernel</span>
-      <span>05 / 06</span>
-    </div>
+    <div class="eyebrow">What you're missing · 04 of 08</div>
+    <h2 class="mid">Eleven providers. One router. <span class="amber">No landlord.</span></h2>
+    <p class="sub">OpenAI rate-limits, I'm on Anthropic. Anthropic stutters, I'm on local Qwen. The model is a commodity. The OS is mine.</p>
+    <div class="footer"><span>Adaptive provider routing</span><span>05 / 16</span></div>
   </section>
 
-  <!-- Slide 6: Live co-creation -->
+  <!-- 6 -->
   <section class="slide">
-    <div class="eyebrow">06 · Live co-creation</div>
-    <h1>Built with you, <span class="amber">live</span>.</h1>
-    <p>Type as we talk. Opportunities you see. Companies you know who need this yesterday. Executives in your circle. Angles I am missing. This pane saves as we go. At the end I copy it and turn it into the structure you receive within seven days.</p>
+    <div class="eyebrow">What you're missing · 05 of 08</div>
+    <h2 class="mid">Inbox finally an <span class="amber">inbox</span> again.</h2>
+    <p class="sub">Agents read, sort, draft replies in my voice. Nothing sends without me. The auditable autonomy bit they will not give you.</p>
+    <div class="footer"><span>Auditable autonomy</span><span>06 / 16</span></div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <div class="eyebrow">What you're missing · 06 of 08</div>
+    <h2 class="mid">One person, <span class="amber">one foundation</span>, eight officers, sixty repos.</h2>
+    <p class="sub">Leverage is not theoretical. You can run an operation that used to need thirty people.</p>
+    <div class="footer"><span>One-person CTO scale</span><span>07 / 16</span></div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <div class="eyebrow">What you're missing · 07 of 08</div>
+    <h2 class="mid">Built my non-speaking son a voice. <span class="amber">In a weekend. Free.</span></h2>
+    <p class="sub">The first thing I shipped under 8GI. He never loses his vocabulary to a vendor again.</p>
+    <div class="footer"><span>Sovereign by necessity · 8gentjr</span><span>08 / 16</span></div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide">
+    <div class="eyebrow">What you're missing · 08 of 08</div>
+    <h2 class="mid">Built in the open. Apache 2.0. <span class="amber">The work is the gate.</span></h2>
+    <p class="sub">No private demos. No closed beta. Pull the repo, run the binary, audit the constitution.</p>
+    <div class="footer"><span>Verifiable by anyone</span><span>09 / 16</span></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide">
+    <div class="eyebrow">10 · The deeper problem</div>
+    <h1 class="big">Whoever owns the <span class="amber">model</span> between you and the <span class="amber">question</span> owns the question.</h1>
+    <div class="footer"><span>Epistemic capture</span><span>10 / 16</span></div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide">
+    <div class="eyebrow">11 · The mechanism</div>
+    <h2 class="mid">Training data. RLHF. Refusals. Defaults. <span class="amber">Each one is a vote.</span></h2>
+    <p class="sub">Three or four foreign commercial labs casting the votes for a billion knowledge workers. Nobody else got a ballot.</p>
+    <div class="footer"><span>Not conspiracy. Structure.</span><span>11 / 16</span></div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide">
+    <div class="eyebrow">12 · The workforce reality</div>
+    <h1 class="big">Knowledge workers are <span class="amber">already</span> on the leash.</h1>
+    <p class="sub">Juniors can't draft without Claude. Analysts can't model without GPT. Engineers can't code without Copilot. Eighteen months. Load-bearing.</p>
+    <div class="footer"><span>It was sold as a tool. It is now an oxygen line.</span><span>12 / 16</span></div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide">
+    <div class="eyebrow">13 · The squeeze that's coming</div>
+    <h2 class="mid">Three labs. Bleeding cash. <span class="amber">One ToS update from a continuity event.</span></h2>
+    <p class="sub">They will price up. Tier-gate the frontier. Sunset the model your workflow depends on. The bill comes due in the third quarter of next year.</p>
+    <div class="footer"><span>The squeeze</span><span>13 / 16</span></div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide">
+    <div class="eyebrow">14 · The alternative</div>
+    <h1 class="big">Own the building. <span class="amber">Pay no rent.</span></h1>
+    <p class="sub">Bitcoin was sovereign money. 8GI is sovereign cognition. Same architecture. Different floor.</p>
+    <div class="footer"><span>The sovereign stack</span><span>14 / 16</span></div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide">
+    <div class="eyebrow">15 · For Gary and his circle</div>
+    <h2 class="mid">Sovereign AI for the <span class="amber">executive</span>. Sovereign AI for the <span class="amber">company</span>.</h2>
+    <p class="sub">Free baseline. Paid operator tier. Enterprise licence with 8GI-led deployment. Your strategy never trains a vendor's model again.</p>
+    <div class="footer"><span>The commercial layer</span><span>15 / 16</span></div>
+  </section>
+
+  <!-- 16 LIVE -->
+  <section class="slide">
+    <div class="eyebrow">16 · Live co-creation</div>
+    <h2 class="mid">Built with you, <span class="amber">live</span>.</h2>
+    <p class="sub">Type the opportunities you see. Companies that need this yesterday. Executives in your circle. Angles I am missing.</p>
     <div class="live-shell">
       <div class="live-meta">
-        <span id="livesaved">Saved <span class="saved-flash" id="flash">·</span></span>
+        <span>Saved locally <span class="flash" id="flash">·</span></span>
         <div class="live-actions">
           <button onclick="copyNotes()">Copy</button>
           <button onclick="downloadNotes()">Download</button>
@@ -408,10 +294,7 @@
       </div>
       <textarea id="livepane" placeholder="Where Gary sees the commercial wedge ·  executives we should approach first · companies primed for sovereign stack ·  I AM audience activations · objections he anticipates · next concrete commitment from both sides..."></textarea>
     </div>
-    <div class="footer">
-      <span>Saves locally · Copy or Download to share post-call</span>
-      <span>06 / 06</span>
-    </div>
+    <div class="footer"><span>Copy or download to share post-call</span><span>16 / 16</span></div>
   </section>
 
 </div>
@@ -424,7 +307,6 @@
     i = Math.max(0, Math.min(slides.length - 1, n));
     slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
     counter.textContent = String(i + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
-    window.scrollTo({ top: 0, behavior: "instant" });
     history.replaceState(null, "", "#s" + (i + 1));
   }
   function next() { show(i + 1); }
@@ -432,16 +314,13 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight" || e.key === " ") { next(); e.preventDefault(); }
     if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
-    if (e.key >= "1" && e.key <= "6") show(parseInt(e.key) - 1);
   });
   const m = location.hash.match(/^#s(\d+)$/);
   if (m) show(parseInt(m[1]) - 1);
-
   const pane = document.getElementById("livepane");
   const flash = document.getElementById("flash");
   const KEY = "iamlive-cocreation-2026-05-12";
-  const saved = localStorage.getItem(KEY);
-  if (saved) pane.value = saved;
+  if (localStorage.getItem(KEY)) pane.value = localStorage.getItem(KEY);
   let saveTimer;
   pane.addEventListener("input", () => {
     clearTimeout(saveTimer);
@@ -451,26 +330,9 @@
       setTimeout(() => flash.classList.remove("show"), 600);
     }, 300);
   });
-  function copyNotes() {
-    navigator.clipboard.writeText(pane.value).then(() => {
-      flash.textContent = "copied";
-      flash.classList.add("show");
-      setTimeout(() => { flash.classList.remove("show"); flash.textContent = "·"; }, 1200);
-    });
-  }
-  function downloadNotes() {
-    const blob = new Blob([pane.value], { type: "text/plain" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "gary-living-deck-notes-2026-05-12.txt";
-    a.click();
-  }
-  function clearNotes() {
-    if (confirm("Clear the live pane?")) {
-      pane.value = "";
-      localStorage.removeItem(KEY);
-    }
-  }
+  function copyNotes() { navigator.clipboard.writeText(pane.value).then(() => { flash.textContent = "copied"; flash.classList.add("show"); setTimeout(() => { flash.classList.remove("show"); flash.textContent = "·"; }, 1200); }); }
+  function downloadNotes() { const b = new Blob([pane.value], { type: "text/plain" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "gary-living-deck-notes-2026-05-12.txt"; a.click(); }
+  function clearNotes() { if (confirm("Clear?")) { pane.value = ""; localStorage.removeItem(KEY); } }
 </script>
 </body>
 </html>
